@@ -1,0 +1,1 @@
+Diese Ordner enthält statische Ressourcen wie Bilder, Schriftarten oder Stylesheets.
