@@ -56,6 +56,27 @@ export class NotesService {
     }
 
     /**
+     * Search Notes
+     * @param query
+     * @returns NoteRead Successful Response
+     * @throws ApiError
+     */
+    public static searchNotes(
+        query: string,
+    ): CancelablePromise<Array<NoteRead>> {
+        return __request(OpenAPI, {
+            method: 'POST',
+            url: '/notes/{query}',
+            path: {
+                'query': query,
+            },
+            errors: {
+                422: `Validation Error`,
+            },
+        });
+    }
+
+    /**
      * Get Note
      * @param noteId
      * @returns NoteRead Successful Response

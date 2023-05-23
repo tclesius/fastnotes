@@ -34,3 +34,9 @@ def delete(*, db_session: Session, note_id: int):
     stmt = sqlalchemy.delete(Note).filter(Note.id == note_id)
     db_session.execute(stmt)
     db_session.commit()
+
+
+def search(*, db_session: Session, title: str):
+    stmt = sqlalchemy.select(Note).filter(Note.title.contains(title, autoescape=True))
+    return db_session.execute(stmt).scalars().all()
+
