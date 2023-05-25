@@ -12,8 +12,6 @@
   onMounted(() => notesStore.getPaginated(0,100))
 </script>
 <template>
-
-
   <h1>Notizen App</h1>
   <hr>
   <header>

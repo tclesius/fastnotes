@@ -15,8 +15,8 @@ async def get_notes(skip: int, limit: int, db_session=Depends(get_db)):
 
 
 @router.post("/{query}", response_model=List[NoteRead])
-async def search_notes(query: str, db_session=Depends(get_db)):
-    return search(db_session=db_session, title=query)
+async def search_notes(skip: int, limit: int, title_query: str, db_session=Depends(get_db)):
+    return search(db_session=db_session, title=title_query, skip=skip, limit=limit)
 
 
 @router.get("/{note_id}", response_model=NoteRead)

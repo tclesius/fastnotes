@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field, validator
 from sqlalchemy import Column, Integer, String, Text
 
 from database.core import Base
@@ -16,6 +16,12 @@ class Note(Base):
 class NoteBase(BaseModel):
     title: str
     text: str | None = None
+
+    @validator('*', pre=True)
+    def empty_str_to_none(cls, v):
+        if v == '':
+            return None
+        return v
 
     class Config:
         orm_mode = True

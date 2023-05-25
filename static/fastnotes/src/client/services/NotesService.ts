@@ -57,18 +57,24 @@ export class NotesService {
 
     /**
      * Search Notes
-     * @param query
+     * @param skip
+     * @param limit
+     * @param titleQuery
      * @returns NoteRead Successful Response
      * @throws ApiError
      */
     public static searchNotes(
-        query: string,
+        skip: number,
+        limit: number,
+        titleQuery: string,
     ): CancelablePromise<Array<NoteRead>> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/notes/{query}',
-            path: {
-                'query': query,
+            query: {
+                'skip': skip,
+                'limit': limit,
+                'title_query': titleQuery,
             },
             errors: {
                 422: `Validation Error`,

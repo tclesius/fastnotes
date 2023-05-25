@@ -7,7 +7,7 @@ import {NoteCreate, NotesService, NoteUpdate} from "../client";
 // ! no error handling !
 // ! no request status ! ( should be there for displaying loading or so )
 
-export const useNoteStore = defineStore('note', () =>{
+export const useNoteStore = defineStore('note', () => {
     const notes = ref({})
     async function get(id:number) {
         return {id: notes.value[id]}
@@ -20,19 +20,24 @@ export const useNoteStore = defineStore('note', () =>{
         })
     }
     async function update(id: number, requestBody: NoteUpdate) {
-        const result = await NotesService.updateNote(id, requestBody)
-        notes.value[id] = {title: result.title, text: result.text};
+        if (requestBody.title !== "" || requestBody.text !== "" ) {
+            const result = await NotesService.updateNote(id, requestBody)
+            notes.value[id] = {title: result.title, text: result.text};
+        }
+
     }
     async function remove(id: number){
         await NotesService.deleteNote(id)
         delete notes.value[id]
     }
     async function create(requestBody: NoteCreate){
-        const result = await NotesService.createNote(requestBody)
-        notes.value[result.id] = {title: result.title, text: result.text}
+        if (requestBody.title !== "") {
+            const result = await NotesService.createNote(requestBody)
+            notes.value[result.id] = {title: result.title, text: result.text}
+        }
     }
-    async function search(query: string){
-        const result = await NotesService.searchNotes(query)
+    async function search(skip: number, limit:number, title_query: string){
+        const result = await NotesService.searchNotes(skip, limit, title_query)
         notes.value = {}
         result.map((note) => {
             notes.value[note.id] = {title: note.title, text: note.text}
