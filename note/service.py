@@ -22,12 +22,11 @@ def create(*, db_session: Session, note_in: NoteCreate):
 
 
 def update(*, db_session: Session, note_id: int, note_in: NoteUpdate):
-    stmt = sqlalchemy.update(Note).values(**note_in.dict(exclude_none=True)) \
+    stmt = sqlalchemy.update(Note) \
         .where(Note.id == note_id) \
-        .returning(Note)
-    note = db_session.execute(stmt)
+        .values(**note_in.dict())
+    db_session.execute(stmt)
     db_session.commit()
-    return note.scalar()
 
 
 def delete(*, db_session: Session, note_id: int):
@@ -39,4 +38,3 @@ def delete(*, db_session: Session, note_id: int):
 def search(*, db_session: Session, title: str, skip: int, limit: int):
     stmt = sqlalchemy.select(Note).filter(Note.title.contains(title, autoescape=True)).offset(skip).limit(limit)
     return db_session.execute(stmt).scalars().all()
-

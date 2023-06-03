@@ -20,7 +20,7 @@ export const useNoteStore = defineStore('note', () => {
         })
     }
     async function update(id: number, requestBody: NoteUpdate) {
-        if (requestBody.title !== "" || requestBody.text !== "" ) {
+        if (requestBody.title !== "") {
             const result = await NotesService.updateNote(id, requestBody)
             notes.value[id] = {title: result.title, text: result.text};
         }

@@ -34,10 +34,9 @@ async def create_note(note_in: NoteCreate, db_session=Depends(get_db)):
     return note
 
 
-@router.patch("/{note_id}", response_model=NoteRead)
+@router.patch("/{note_id}")
 async def update_note(note_id: int, note_in: NoteUpdate, db_session=Depends(get_db)):
-    note = update(db_session=db_session, note_id=note_id, note_in=note_in)
-    return note
+    update(db_session=db_session, note_id=note_id, note_in=note_in)
 
 
 @router.delete("/{note_id}")
