@@ -30,7 +30,7 @@ function toggleCollapsed(id) {
   </b-input-group>
   <div class="container">
     <div class="row">
-      <div class="col-md-12" v-for="(note, id) in notes" :key="note.id">
+      <div class="col-md-12" v-for="(note, id) in notes" :key="id">
         <b-card style="margin-bottom: 20px; box-shadow: 0 0 0 1px lightgrey; border-radius: 5px;">
           <b-card-title>{{ note.title }}</b-card-title>
           <b-card-text>{{ note.text }}</b-card-text>
