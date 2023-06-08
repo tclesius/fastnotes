@@ -4,6 +4,7 @@ from fastapi.routing import APIRoute
 
 from database.core import Base, engine
 from note.views import router as note_router
+from user.views import router as user_router
 
 
 def custom_generate_unique_id(route: APIRoute):
@@ -14,6 +15,8 @@ def custom_generate_unique_id(route: APIRoute):
 app = FastAPI(generate_unique_id_function=custom_generate_unique_id)
 
 app.include_router(note_router, prefix="/notes", tags=["notes"])
+app.include_router(user_router, prefix="/users", tags=["users"])
+
 
 Base.metadata.create_all(engine)
 

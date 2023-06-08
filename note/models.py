@@ -1,5 +1,6 @@
 from pydantic import BaseModel, Field, validator
-from sqlalchemy import Column, Integer, String, Text
+from sqlalchemy import Column, Integer, String, Text, ForeignKey
+from sqlalchemy.orm import relationship
 
 from database.core import Base
 
@@ -10,6 +11,9 @@ class Note(Base):
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String(255), index=True)
     text = Column(Text)
+    user_id = Column(Integer, ForeignKey("users.id"))
+
+    user = relationship("User", back_populates="notes")
 
 
 # Pydantic models

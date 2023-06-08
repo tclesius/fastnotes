@@ -9,18 +9,18 @@
     "generate-client": "openapi --input http://localhost:8000/openapi.json --output ./src/client --client axios"
   },
   "dependencies": {
-    "@vue/compat": "^3.2.47",
-    "bootstrap": "^4.6.1",
-    "bootstrap-vue": "^2.23.1",
     "pinia": "^2.0.36",
     "vue": "^3.2.47",
-    "vue-router": "^4.2.0"
+    "vue-router": "^4.2.2"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",
+    "autoprefixer": "^10.4.14",
     "axios": "^1.4.0",
     "form-data": "^4.0.0",
     "openapi-typescript-codegen": "^0.24.0",
+    "postcss": "^8.4.24",
+    "tailwindcss": "^3.3.2",
     "vite": "^4.1.4"
   }
 }

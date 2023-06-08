@@ -128,13 +128,13 @@ export class NotesService {
      * Update Note
      * @param noteId
      * @param requestBody
-     * @returns NoteRead Successful Response
+     * @returns any Successful Response
      * @throws ApiError
      */
     public static updateNote(
         noteId: number,
         requestBody: NoteUpdate,
-    ): CancelablePromise<NoteRead> {
+    ): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'PATCH',
             url: '/notes/{note_id}',
