@@ -9,6 +9,7 @@
     "generate-client": "openapi --input http://localhost:8000/openapi.json --output ./src/client --client axios"
   },
   "dependencies": {
+    "flowbite": "^1.6.6",
     "pinia": "^2.0.36",
     "vue": "^3.2.47",
     "vue-router": "^4.2.2"
